@@ -1,8 +1,8 @@
-import { InjectionToken, container } from 'tsyringe';
+import { InjectionToken, DependencyContainer } from 'tsyringe';
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 import { Middleware } from "../Middleware";
 
-export function middleware<T extends Middleware>(token: InjectionToken<T>, ...args: any[]): RequestHandler {
+export function middleware<T extends Middleware>(container: DependencyContainer, token: InjectionToken<T>, ...args: any[]): RequestHandler {
 	let instance: T;
 	return (req: Request, res: Response, next: NextFunction) => {
 		if (!instance) {
