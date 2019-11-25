@@ -1,0 +1,26 @@
+{
+	"name": "@maca134/ts-express-utils",
+	"version": "1.0.3",
+	"description": "Typescript utils for express",
+	"main": "./dist",
+	"scripts": {
+		"postversion": "npm run build && npm publish",
+		"build": "rimraf ./dist && npm run generate-barrels && tsc",
+		"generate-barrels": "barrelsby --delete -d ./src"
+	},
+	"author": "maca134",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"express": "^4.17.1",
+		"reflect-metadata": "^0.1.13",
+		"tsyringe": "^4.0.1"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.2",
+		"@types/node": "^12.12.12",
+		"barrelsby": "^2.2.0",
+		"rimraf": "^3.0.0",
+		"ts-node": "^8.5.2",
+		"typescript": "^3.7.2"
+	}
+}
