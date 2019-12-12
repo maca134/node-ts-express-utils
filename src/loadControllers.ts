@@ -8,7 +8,12 @@ async function tokensToMiddlewares(container: DependencyContainerLike, tokens: I
 	const instances = await Promise.all(tokens.map(token => container.resolve<Middleware>(token)));
 
 	return instances.map(
-		instance => (req: Request, res: Response, next: NextFunction) => instance.handler(req, res, next)
+		instance => {
+			if (!instance.handler) {
+				throw new Error(`${instance.constructor.name} does not have a handler method`);
+			}
+			return (req: Request, res: Response, next: NextFunction) => instance.handler(req, res, next);
+		}
 	);
 }
 
