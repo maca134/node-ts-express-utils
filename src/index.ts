@@ -3,6 +3,7 @@
  */
 
 export * from "./BaseController";
+export * from "./DependencyContainerLike";
 export * from "./Http400BadRquest";
 export * from "./Http401Unauthorized";
 export * from "./Http404NotFound";
@@ -15,7 +16,6 @@ export * from "./RouteDefinition";
 export * from "./decorators/controller";
 export * from "./decorators/del";
 export * from "./decorators/get";
-export * from "./decorators/middleware";
 export * from "./decorators/options";
 export * from "./decorators/post";
 export * from "./decorators/put";

@@ -1,9 +1,9 @@
 import { PathParams } from 'express-serve-static-core';
-import { RequestHandler } from 'express';
 import { HttpRequestMethod } from '../HttpRequestMethod';
 import { RouteDefinition } from '../RouteDefinition';
+import { InjectionToken } from '../DependencyContainerLike';
 
-export function route(requestMethod: HttpRequestMethod, path: PathParams, ...middleware: Array<RequestHandler>): MethodDecorator {
+export function route<T>(requestMethod: HttpRequestMethod, path: PathParams, ...middleware: Array<InjectionToken<T>>): MethodDecorator {
 	return (target, methodName: string): void => {
 		if (!Reflect.hasMetadata('routes', target.constructor)) {
 			Reflect.defineMetadata('routes', [], target.constructor);
