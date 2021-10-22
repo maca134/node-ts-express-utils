@@ -39,7 +39,7 @@ export async function loadControllers(
 				],
 				async (req: Request, res: Response, next: NextFunction) => {
 					try {
-						await Promise.resolve(controller[route.methodName](req, res, next));
+						await Promise.resolve(controller[route.methodName](req, res));
 					} catch (err) {
 						return next(err);
 					}
