@@ -40,8 +40,7 @@ export async function loadControllers(
 				async (req: Request, res: Response, next: NextFunction) => {
 					try {
 						await Promise.resolve(controller[route.methodName](req, res, next));
-					}
-					catch (err) {
+					} catch (err) {
 						return next(err);
 					}
 					if (!res.headersSent)
