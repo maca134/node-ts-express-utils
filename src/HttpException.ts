@@ -16,7 +16,7 @@ export class Http401Unauthorized extends HttpException {
 	}
 }
 
-export class Http400BadRquest extends HttpException {
+export class Http400BadRequest extends HttpException {
 	constructor(message?: string) {
 		super(400, message || 'BAD REQUEST');
 	}
