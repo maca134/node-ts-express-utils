@@ -4,9 +4,11 @@
 	"description": "Typescript utils for express",
 	"main": "./dist",
 	"scripts": {
-		"postversion": "npm run build && npm publish",
+		"generate-barrels": "barrelsby --delete -d ./src",
 		"build": "rimraf ./dist && npm run generate-barrels && tsc",
-		"generate-barrels": "barrelsby --delete -d ./src"
+		"git": "git add ./* & git commit -m \"auto-commit\" & git push",
+		"update": "npm run build & npm run git & npm version patch & npm run git",
+		"postversion": "npm publish"
 	},
 	"author": "maca134",
 	"license": "UNLICENSED",

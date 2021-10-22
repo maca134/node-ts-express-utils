@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction, RequestHandler, Router } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 import { BaseController } from './BaseController';
 import { RouteDefinition } from "./RouteDefinition";
 import { InjectionToken, DependencyContainerLike } from './DependencyContainerLike';
-import { Middleware } from './Middleware';
+import { Middleware } from './MiddlewareBase';
 
 async function tokensToMiddlewares(container: DependencyContainerLike, tokens: InjectionToken[]) {
 	const instances = await Promise.all(tokens.map(token => container.resolve<Middleware>(token)));

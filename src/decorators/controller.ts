@@ -1,5 +1,5 @@
+import { Middleware } from '../MiddlewareBase';
 import { InjectionToken } from '../DependencyContainerLike';
-import { Middleware } from '../Middleware';
 
 export function controller<T extends Middleware>(prefix: string = '', ...middleware: Array<InjectionToken<T>>): ClassDecorator {
 	return (target: any) => {

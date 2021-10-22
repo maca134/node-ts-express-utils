@@ -2,7 +2,7 @@ import { PathParams } from 'express-serve-static-core';
 import { HttpRequestMethod } from '../HttpRequestMethod';
 import { RouteDefinition } from '../RouteDefinition';
 import { InjectionToken } from '../DependencyContainerLike';
-import { Middleware } from '../Middleware';
+import { Middleware } from '../MiddlewareBase';
 
 export function route<T extends Middleware>(requestMethod: HttpRequestMethod, path: PathParams, ...middleware: Array<InjectionToken<T>>): MethodDecorator {
 	return (target, methodName: string): void => {

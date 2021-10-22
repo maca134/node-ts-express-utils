@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { Middleware } from './Middleware';
+
+export interface Middleware {
+	handler(req: Request, res: Response, next: NextFunction): any;
+}
 
 export abstract class MiddlewareBase implements Middleware {
 	protected abstract _requestHandler: RequestHandler;
