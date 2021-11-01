@@ -21,3 +21,9 @@ export class Http400BadRequest extends HttpException {
 		super(400, message || 'BAD REQUEST');
 	}
 }
+
+export class Http500ServerError extends HttpException {
+	constructor(message?: string) {
+		super(500, message || 'SERVER ERROR');
+	}
+}

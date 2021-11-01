@@ -3,6 +3,7 @@ import { BaseController } from './BaseController';
 import { RouteDefinition } from "./RouteDefinition";
 import { InjectionToken, DependencyContainerLike } from './DependencyContainerLike';
 import { Middleware } from './MiddlewareBase';
+import { Http500ServerError } from './HttpException';
 
 async function tokensToMiddlewares(container: DependencyContainerLike, tokens: InjectionToken[]) {
 	const instances = await Promise.all(tokens.map(token => container.resolve<Middleware>(token)));
@@ -20,7 +21,8 @@ async function tokensToMiddlewares(container: DependencyContainerLike, tokens: I
 export async function loadControllers(
 	controllers: BaseController[],
 	container: DependencyContainerLike,
-	logger: (msg: string) => void
+	logger: (msg: string) => void,
+	continueOnRouteFound = true
 ) {
 	const router = Router();
 	for (let i = 0; i < controllers.length; i++) {
@@ -39,12 +41,14 @@ export async function loadControllers(
 				],
 				async (req: Request, res: Response, next: NextFunction) => {
 					try {
-						await Promise.resolve(controller[route.methodName](req, res));
+						await Promise.resolve(controller[route.methodName](req, res, next));
 					} catch (err) {
 						return next(err);
 					}
-					if (!res.headersSent)
-						next();
+					if (continueOnRouteFound && !res.headersSent)
+						return next();
+					if (!continueOnRouteFound && !res.headersSent)
+						return next(new Http500ServerError('controller method did not send any response'));
 				}
 			);
 		}
