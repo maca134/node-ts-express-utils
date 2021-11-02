@@ -1,6 +1,6 @@
 {
 	"name": "@maca134/ts-express-utils",
-	"version": "1.0.16",
+	"version": "1.0.17",
 	"description": "Typescript utils for express",
 	"main": "./dist",
 	"scripts": {
