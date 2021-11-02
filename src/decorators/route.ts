@@ -4,7 +4,7 @@ import { RouteDefinition } from '../RouteDefinition';
 import { InjectionToken } from '../DependencyContainerLike';
 import { Middleware } from '../MiddlewareBase';
 
-export function route<T extends Middleware>(requestMethod: HttpRequestMethod, path: PathParams, ...middleware: Array<InjectionToken<T>>): MethodDecorator {
+export function route(requestMethod: HttpRequestMethod, path: PathParams, ...middleware: Array<InjectionToken<Middleware>>): MethodDecorator {
 	return (target, methodName: string): void => {
 		if (!Reflect.hasMetadata('routes', target.constructor)) {
 			Reflect.defineMetadata('routes', [], target.constructor);

@@ -3,6 +3,6 @@ import { route } from './route';
 import { InjectionToken } from '../DependencyContainerLike';
 import { Middleware } from '../MiddlewareBase';
 
-export function post<T extends Middleware>(path: PathParams, ...middleware: Array<InjectionToken<T>>) {
+export function post(path: PathParams, ...middleware: Array<InjectionToken<Middleware>>) {
 	return route('post', path, ...middleware);
 }

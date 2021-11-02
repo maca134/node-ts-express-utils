@@ -3,6 +3,6 @@ import { route } from './route';
 import { InjectionToken } from '../DependencyContainerLike';
 import { Middleware } from '../MiddlewareBase';
 
-export function del<T extends Middleware>(path: PathParams, ...middleware: Array<InjectionToken<T>>) {
+export function del(path: PathParams, ...middleware: Array<InjectionToken<Middleware>>) {
 	return route('delete', path, ...middleware);
 }
